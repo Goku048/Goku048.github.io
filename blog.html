@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | goku048</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="main-title">
+                <h1># Goku048</h1>
+                <p>Developer & Android Enthusiast</p>
+            </div>
+            
+            <nav class="top-nav">
+                <a href="index.html">Home</a>
+                <a href="blog.html" class="active">Blog</a>
+                <a href="hardware.html">Hardware</a>
+                <a href="about.html">About</a>
+            </nav>
+        </header>
+
+        <section class="content-section">
+            <h2 class="section-title">Blog</h2>
+            
+            <div class="blog-posts">
+                <article class="blog-post">
+                    <div class="post-header">
+                        <h3 class="post-title">How I Built This Website</h3>
+                        <span class="post-date">Dec 10, 2023</span>
+                    </div>
+                    <div class="post-content">
+                        <p>I wanted to create a simple, clean personal website that reflects my style and interests. After exploring various designs, I settled on a minimal aesthetic with a focus on content.</p>
+                        <p>The website is built with plain HTML and CSS, without any frameworks or complex tooling. This allows for fast loading times and simplicity in maintenance.</p>
+                    </div>
+                </article>
+                
+                <article class="blog-post">
+                    <div class="post-header">
+                        <h3 class="post-title">Getting Started with Linux</h3>
+                        <span class="post-date">Nov 28, 2023</span>
+                    </div>
+                    <div class="post-content">
+                        <p>Linux is a powerful operating system that offers flexibility, security, and control. If you're new to Linux, here are some tips to get started.</p>
+                        <ul>
+                            <li>Choose a beginner-friendly distribution</li>
+                            <li>Familiarize yourself with basic command line operations</li>
+                            <li>Explore the package management system</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 goku048. All rights reserved.</p>
+    </footer>
+
+    <script src="theme.js"></script>
+    <script>
+        // Blog post toggle functionality
+        document.querySelectorAll('.post-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                content.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

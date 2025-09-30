@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>projects | goku048@dev:~$</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Same styles as index.html */
+        :root {
+            --bg-color: #300a24;
+            --fg-color: #ffffff;
+            --accent-color: #00ff00;
+            --cursor-color: #ff5f5f;
+            --prompt-color: #75507b;
+            --command-color: #ffffff;
+            --error-color: #ff5f5f;
+            --link-color: #5f87d7;
+            --selection-color: #75507b;
+            --terminal-bg: rgba(48, 10, 36, 0.9);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Monospace', 'Courier New', monospace;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--fg-color);
+            line-height: 1.5;
+            overflow: hidden;
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(117, 80, 123, 0.25) 0%, transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(117, 80, 123, 0.2) 0%, transparent 25%);
+        }
+        
+        .terminal {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background-color: var(--terminal-bg);
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .terminal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 15px;
+            background: linear-gradient(to bottom, #3d3d3d, #2d2d2d);
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            margin: -20px -20px 20px -20px;
+            border-bottom: 1px solid #1b1b1b;
+            color: #dcdcdc;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .terminal-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .terminal-icon {
+            width: 16px;
+            height: 16px;
+            background-color: #75507b;
+            border-radius: 50%;
+        }
+        
+        .terminal-controls {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .terminal-control {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .control-close { 
+            background-color: #ff5f57;
+            border: 1px solid #e0443e;
+        }
+        .control-minimize { 
+            background-color: #ffbd2e;
+            border: 1px solid #dea123;
+        }
+        .control-maximize { 
+            background-color: #28c940;
+            border: 1px solid #1aab29;
+        }
+        
+        .prompt {
+            color: var(--prompt-color);
+            margin-right: 10px;
+            white-space: nowrap;
+            font-weight: bold;
+        }
+        
+        .output {
+            margin-bottom: 15px;
+            white-space: pre-wrap;
+        }
+        
+        .command {
+            color: var(--command-color);
+            font-weight: bold;
+        }
+        
+        .success {
+            color: var(--accent-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #4a3042;
+            padding-bottom: 10px;
+        }
+        
+        .nav-link {
+            color: var(--fg-color);
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            background-color: rgba(117, 80, 123, 0.3);
+            font-size: 14px;
+        }
+        
+        .nav-link.current {
+            background-color: var(--prompt-color);
+            color: var(--bg-color);
+        }
+        
+        .command-line {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .command-input {
+            background-color: transparent;
+            border: none;
+            color: var(--command-color);
+            font-size: 16px;
+            width: 100%;
+            outline: none;
+            caret-color: var(--cursor-color);
+            font-family: 'Monospace', 'Courier New', monospace;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Projects specific styles */
+        .project-list {
+            margin-left: 20px;
+        }
+        
+        .project-item {
+            margin-bottom: 15px;
+        }
+        
+        .project-name {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .project-desc {
+            color: var(--command-color);
+            margin-left: 20px;
+        }
+        
+        .project-tech {
+            color: var(--prompt-color);
+            margin-left: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal-header">
+        <div class="terminal-title">
+            <div class="terminal-icon"></div>
+            <span>goku048@dev: ~/projects</span>
+        </div>
+        <div class="terminal-controls">
+            <div class="terminal-control control-close"></div>
+            <div class="terminal-control control-minimize"></div>
+            <div class="terminal-control control-maximize"></div>
+        </div>
+    </div>
+    
+    <div class="nav-links">
+        <a href="index.html" class="nav-link">home</a>
+        <a href="about.html" class="nav-link">about</a>
+        <a href="blog.html" class="nav-link">blog</a>
+        <a href="projects.html" class="nav-link current">projects</a>
+        <a href="contact.html" class="nav-link">contact</a>
+    </div>
+    
+    <div class="terminal">
+        <div class="output">
+            <span class="prompt">goku048@dev:~/projects$</span>
+            <span class="command">ls -la</span>
+        </div>
+        <div class="output">
+            total 32
+            drwxr-xr-x 2 goku048 goku048 4096 Dec 10 14:30 .
+            drwxr-xr-x 6 goku048 goku048 4096 Dec 10 14:30 ..
+            drwxr-xr-x 2 goku048 goku048 4096 Dec  5 09:15 terminal-theme
+            drwxr-xr-x 2 goku048 goku048 4096 Dec  8 11:23 vim-plugin
+            drwxr-xr-x 2 goku048 goku048 4096 Dec  2 16:45 web-app
+            drwxr-xr-x 2 goku048 goku048 4096 Dec  1 13:12 cli-tool
+        </div>
+        
+        <div class="output">
+            <span class="prompt">goku048@dev:~/projects$</span>
+            <span class="command">cat projects.txt</span>
+        </div>
+        <div class="output">
+            My recent projects:
+        </div>
+        
+        <div class="project-list">
+            <div class="project-item">
+                <div class="project-name">terminal-theme/</div>
+                <div class="project-desc">A color scheme for terminals and code editors inspired by classic Unix systems</div>
+                <div class="project-tech">Technologies: Shell, Python, CSS</div>
+            </div>
+            
+            <div class="project-item">
+                <div class="project-name">vim-plugin/</div>
+                <div class="project-desc">A productivity plugin for Vim with enhanced navigation and editing features</div>
+                <div class="project-tech">Technologies: Vimscript, Lua, Python</div>
+            </div>
+            
+            <div class="project-item">
+                <div class="project-name">web-app/</div>
+                <div class="project-desc">A full-stack web application for task management with real-time updates</div>
+                <div class="project-tech">Technologies: React, Node.js, MongoDB, Socket.io</div>
+            </div>
+            
+            <div class="project-item">
+                <div class="project-name">cli-tool/</div>
+                <div class="project-desc">A command-line utility for developers to automate common workflows</div>
+                <div class="project-tech">Technologies: Go, Shell, Python</div>
+            </div>
+        </div>
+        
+        <div class="output">
+            <span class="prompt">goku048@dev:~/projects$</span>
+            <span class="command">cat terminal-theme/README.md | head -5</span>
+        </div>
+        <div class="output">
+            # Terminal Theme
+            
+            A color scheme for terminals and code editors inspired by classic Unix systems.
+            Features 256 colors and support for multiple terminal emulators.
+        </div>
+        
+        <div class="output">
+            <span class="prompt">goku048@dev:~/projects$</span>
+            <span class="command">cd ..</span>
+        </div>
+    </div>
+    
+    <div class="command-line">
+        <span class="prompt">goku048@dev:~/projects$</span>
+        <input type="text" class="command-input" value="cd .." readonly>
+    </div>
+</body>
+</html>
